@@ -11,8 +11,14 @@ let beer = new Schema({
 
 let pub = new Schema({
     name: String,
+    email: String,
+    address: {
+        street: String,
+        geo: { lat: Number, lng: Number }
+    },
     owner: String,
     phone: String,
+    photo: String,
     beers: [beer],
     date: { type: Date, default: Date.now }
 });
