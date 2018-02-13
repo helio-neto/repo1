@@ -6,7 +6,8 @@ let beer = new Schema({
     name: String,
     style: String,
     abv: String,
-    ibu: String
+    ibu: String,
+    obs: String
 });
 
 let pub = new Schema({
@@ -14,13 +15,15 @@ let pub = new Schema({
     email: String,
     address: {
         street: String,
-        geo: { lat: Number, lng: Number }
+        geo: { lat: Number, lng: Number },
+        city: String,
+        uf: String
     },
     owner: String,
     phone: String,
     photo: String,
     beers: [beer],
-    date: { type: Date, default: Date.now }
+    created: { type: Date, default: Date.now }
 });
 
 let modelPub = mongoose.model('Pub', pub);

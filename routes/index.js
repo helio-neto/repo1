@@ -1,6 +1,5 @@
 const router = require('express').Router();
 const pub = require('../model/pub');
-const hero = require('../model/hero');
 
 router.get('/', (req, res) => {
     res.send("Hello Beer Lovers!!! ");
@@ -20,11 +19,13 @@ router.post('/api/pub', (req, res) => {
     Pub.name = req.body.name;
     Pub.email = req.body.email;
     Pub.address.street = req.body.address.street;
-    //Pub.address.geo.lat = req.body.address.geo.lat;
-    //Pub.address.geo.lng = req.body.address.geo.lng;
-    //Pub.owner = req.body.owner;
-    //Pub.phone = req.body.phone;
-    //Pub.photo = req.body.photo;
+    Pub.address.geo.lat = req.body.address.geo.lat;
+    Pub.address.geo.lng = req.body.address.geo.lng;
+    Pub.address.geo.city = req.body.address.geo.city;
+    Pub.address.geo.uf = req.body.address.geo.uf;
+    Pub.owner = req.body.owner;
+    Pub.phone = req.body.phone;
+    Pub.photo = req.body.photo;
     // save the pub and check for errors
     Pub.save(function(err) {
         if (err)
@@ -63,27 +64,6 @@ router.delete('/api/pub/:pub_id', (req, res) => {
         if (err)
             res.send(err);
         res.json({ message: 'Successfully deleted pub!!!' });
-    });
-});
-
-router.get('/api/heroes', (req, res) => {
-    hero.find(function(err, hero) {
-        if (err)
-            res.send(err);
-
-        res.json(hero);
-    });
-});
-router.post('/api/heroes', (req, res) => {
-    // create the pub from the post request
-    let Hero = new hero();
-    Hero.name = req.body.name;
-
-    Hero.save(function(err) {
-        if (err)
-            res.send(err);
-
-        res.json({ message: 'Hero created!' });
     });
 });
 module.exports = router;
