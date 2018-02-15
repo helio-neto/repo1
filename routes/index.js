@@ -23,6 +23,7 @@ router.post('/api/pub', (req, res) => {
     Pub.address.geo.lng = req.body.address.geo.lng;
     Pub.address.city = req.body.address.city;
     Pub.address.uf = req.body.address.uf;
+    Pub.address.hood = req.body.address.hood;
     Pub.owner = req.body.owner;
     Pub.phone = req.body.phone;
     Pub.photo = req.body.photo;

@@ -17,7 +17,8 @@ let pub = new Schema({
         street: String,
         geo: { lat: Number, lng: Number },
         city: String,
-        uf: String
+        uf: String,
+        hood: String
     },
     owner: String,
     phone: String,
